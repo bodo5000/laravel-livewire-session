@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Post;
 
+use App\Repositories\Category\CategoryRepository;
 use App\Repositories\Post\PostRepository;
 use Livewire\Component;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
@@ -13,10 +14,13 @@ class CreatePostModal extends Component
     public $title;
     public $description;
     public $image;
+    public $category_id;
+    public $counter = 1;
 
-    public function render()
+    public function render(CategoryRepository $categoryRepository)
     {
-        return view('livewire.post.create-post-modal');
+        $categories = $categoryRepository->all();
+        return view('livewire.post.create-post-modal',compact('categories'));
     }
 
     public function submit(PostRepository $postRepository)
@@ -35,6 +39,17 @@ class CreatePostModal extends Component
             'title' => 'required',
             'description' => 'required',
             'image' => 'required|image',
+            'category_id' => 'required',
         ];
+    }
+
+    public function incrementCounter(){
+        $this->counter ++;
+    }
+
+    public function decrementCounter(){
+        if($this->counter >1){
+            $this->counter --;
+        }
     }
 }

@@ -1,8 +1,8 @@
 <div>
-    <x-content-header title="List All Posts" />
+    <x-content-header title="List All Categories" />
 
-    @livewire('post.create-post-modal')
-    @livewire('post.edit-post-modal')
+    @livewire('category.create-category-modal')
+    @livewire('category.edit-category-modal')
     @include('components.deleteModal')
 
 
@@ -23,25 +23,10 @@
         <p class="alert alert-danger">{{ session()->get('error') }}</p>
     @endif
 
-    <div class="form-group">
-        <label for="exampleFormControlSelect1">Filter By Category</label>
-        <select wire:change='filterByCategory' wire:model='category_id' class="form-control" id="exampleFormControlSelect1">
-            <option value="" disabled selected>select post category</option>
-            <option value="all">All</option>
-            @foreach ($categories as $category)
-            <option value="{{ $category->id }}">{{ $category->title }}</option>
-            @endforeach
-        </select>
-
-        @error('category_id')
-            <span style="color: red" class="error">{{ $message }}</span>
-        @enderror
-    </div>
-
     <div class="card mt-4">
         <div class="card-header">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#admin-create-post">
-                Create new post
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#admin-create-category">
+                Create new category
             </button>
         </div>
         <!-- /.card-header -->
@@ -61,25 +46,23 @@
                                     <th>Title</th>
                                     <th>Description </th>
                                     <th>Image</th>
-                                    <th>Category</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($posts as $inx => $post)
+                                @foreach ($categories as $inx => $category)
                                     <tr class="odd">
                                         <td class="dtr-control sorting_1" tabindex="0">{{ ++$inx }}</td>
-                                        <td>{{ $post->title }}</td>
-                                        <td>{{ $post->description }}</td>
+                                        <td>{{ $category->title }}</td>
+                                        <td>{{ $category->description }}</td>
                                         <td>
-                                            <img src="{{ asset($post->image) }}"
-                                                style="width:100px; object-fit: contain" alt="Post image">
+                                            <img src="{{ asset($category->image) }}"
+                                                style="width:100px; object-fit: contain" alt="Category image">
                                         </td>
-                                        <td>{{ $post->category->title }}</td>
                                         <td>
-                                            <button type="button" wire:click="edit({{ $post->id }})"
+                                            <button type="button" wire:click="edit({{ $category->id }})"
                                                 class="btn btn-info btn-sm">Edit</button>
-                                            <button type="button" wire:click='deleteId({{ $post->id }})'
+                                            <button type="button" wire:click='deleteId({{ $category->id }})'
                                                 class="btn btn-danger btn-sm" data-toggle="modal"
                                                 data-target="#deleteModal">
                                                 Delete

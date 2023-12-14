@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Livewire\Category\ListCategories;
 use App\Livewire\Post\ListPosts;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/admin/posts', ListPosts::class)->name('admin.posts.index');
 
-require __DIR__.'/auth.php';
+Route::get('/admin/posts', ListPosts::class)->name('admin.posts.index');
+Route::get('/admin/categories', ListCategories::class)->name('admin.categories.index');
+
+require __DIR__ . '/auth.php';

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 namespace App\Repositories;
@@ -40,5 +40,5 @@ abstract class EloquentBaseRepository implements BaseRepository{
     public function all(){
         return $this->model->all();
     }
-    
+
 }

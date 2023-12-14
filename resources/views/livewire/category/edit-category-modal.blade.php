@@ -1,11 +1,11 @@
 <div>
-    <div class="modal fade" id="admin-create-post" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="admin-edit-category" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true" wire:ignore.self>
 
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Craete new post</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Craete new Categroy</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -40,37 +40,9 @@
                                 @enderror
                             </div>
 
-                            <div class="form-group">
-                                <label for="exampleFormControlSelect1">Category</label>
-                                <select wire:change='$refresh' wire:model='category_id' class="form-control" id="exampleFormControlSelect1">
-                                    <option value="">select post category</option>
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->title }}</option>
-                                    @endforeach
-                                </select>
-
-                                @error('category_id')
-                                    <span style="color: red" class="error">{{ $message }}</span>
-                                @enderror
-                            </div>
-
-
-                            @for($i = 0; $i < $counter; $i++)
-                            <div class="form-group">
-                                <label for="title">Title</label>
-                                <input wire:model="title" type="text" class="form-control" id="title"
-                                placeholder="Enter title">
-                                @error('title')
-                                <span style="color: red" class="error">{{ $message }}</span>
-                                @enderror
-
-                            </div>
-                            @endfor
-                            <button type="button" class="btn btn-success btn-sm" wire:click='incrementCounter'>Add Input</button>
-                            @if($counter > 0)
-                            <button type="button" class="btn btn-danger btn-sm" wire:click='decrementCounter'>delete Input</button>
+                     
                             <!-- /.card-body -->
-                            @endif
+
 
                         </div>
                         <div class="modal-footer">
